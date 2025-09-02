@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>APP_NAME – Mobile Landing</title>
-  <meta name="description" content="Discover amazing experiences in our mobile app." />
+  <title>ImmoTender – Mobile Landing</title>
+  <meta name="description" content="Find your dream flat in Berlin" />
+  <meta name="theme-color" content="#0b0b0f" />
 
   <!-- iOS Smart App Banner (replace APP_STORE_ID) -->
-  <!-- This shows a native banner in Safari on iOS linking to your App Store page -->
   <meta name="apple-itunes-app" content="app-id=APP_STORE_ID"> 
 
   <!-- Open Graph (for social shares) -->
-  <meta property="og:title" content="APP_NAME for iOS" />
-  <meta property="og:description" content="Explore APP_NAME on mobile." />
+  <meta property="og:title" content="ImmoTender for iOS" />
+  <meta property="og:description" content="Find your dream flat in Berlin" />
   <meta property="og:image" content="/path/to/app-icon.png" />
 
   <style>
     :root {
-      --bg: #0b0b0f; /* near-black */
-      --card: #121319; /* dark card */
-      --text: #f2f4f8; /* near white */
+      --bg: #0b0b0f;            /* near-black */
+      --card: #121319;          /* dark card */
+      --text: #f2f4f8;          /* near white */
       --muted: #b7c0cc;
-      --primary: #2563eb; /* blue */
-      --primary-contrast: #ffffff;
+      --primary: #FFD12B;       /* yellow CTA */
+      --primary-contrast: #111827; /* dark text on yellow */
       --radius: 24px;
       --shadow: 0 20px 60px rgba(0,0,0,0.45);
     }
@@ -30,9 +30,12 @@
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
-      margin: 0; background: radial-gradient(1200px 800px at 70% -10%, #1a1b24, #0b0b0f), var(--bg);
-      color: var(--text); font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      display: grid; place-items: center; 
+      margin: 0; 
+      background: radial-gradient(1200px 800px at 70% -10%, #1a1b24, #0b0b0f), var(--bg);
+      color: var(--text); 
+      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      display: grid; 
+      place-items: center; 
     }
 
     .wrap { width: 100%; max-width: 720px; padding: 24px; }
@@ -70,34 +73,50 @@
       display: inline-flex; justify-content: center; align-items: center; gap: 10px;
       width: 100%; padding: 14px 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,.08);
       background: var(--primary); color: var(--primary-contrast); font-weight: 700; text-decoration: none;
-      box-shadow: 0 8px 24px rgba(37,99,235,.4);
+      box-shadow: 0 8px 24px rgba(255,209,43,.40);
       transition: transform .08s ease, filter .2s ease, box-shadow .2s ease;
     }
     .btn:active { transform: translateY(1px); }
 
-    .link { text-align: center; }
-    .link a { color: #cbd5ff; text-decoration: underline; text-underline-offset: 3px; }
+    /* Secondary buttons row */
+    .btn-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 12px 16px; border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,0.04);
+      color: var(--text); text-decoration: none; font-weight: 600;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,.28); }
+    .btn-secondary:active { transform: translateY(1px); }
+    .btn-secondary svg { width: 18px; height: 18px; display: block; }
 
     footer { text-align: center; color: var(--muted); font-size: 14px; padding: 18px 0 4px; }
 
     .domain-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); }
     .dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 12px #10b981; }
 
+    @media (max-width: 420px) {
+      .btn-row { grid-template-columns: 1fr; }
+    }
+
     @media (prefers-color-scheme: light) {
       :root { --bg: #f6f7fb; --card: #ffffff; --text: #111827; --muted: #6b7280; }
       body { background: radial-gradient(1200px 800px at 70% -10%, #dbeafe, #f6f7fb); }
-      .btn { box-shadow: 0 8px 24px rgba(37,99,235,.25); }
+      .btn { box-shadow: 0 8px 24px rgba(255,209,43,.25); }
       .icon { border-color: rgba(0,0,0,.06); }
+      .btn-secondary { border-color: rgba(0,0,0,.12); background: rgba(0,0,0,.03); }
+      .btn-secondary:hover { background: rgba(0,0,0,.06); border-color: rgba(0,0,0,.22); }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <!-- Faux App Store top area -->
-    <div class="store-header">
-      <small>◀ App Store</small>
-    </div>
-
     <section class="card" role="region" aria-label="App Landing">
       <div class="hero">
         <div class="hero-bg" aria-hidden="true"></div>
@@ -105,22 +124,45 @@
         <div class="brand-row">
           <div class="icon" aria-hidden="true">
             <!-- Replace with your 1024×1024 icon -->
-            <img src="/path/to/app-icon.png" alt="APP_NAME icon" />
+            <img src="./Images/ImmoTender.png" alt="ImmoTender icon" />
           </div>
           <div>
-            <h1>APP_NAME</h1>
-            <p class="subtitle">Discover millions of experiences on mobile.</p>
+            <h1>ImmoTender</h1>
+            <p class="subtitle">Find your dream flat in Berlin</p>
           </div>
         </div>
       </div>
 
       <div class="cta">
+        <!-- Primary CTA -->
         <a id="openAppBtn" class="btn" href="#">Continue in App</a>
-        <p class="link"><a id="openWeb" href="WEB_URL" rel="noopener">Continue in Browser</a></p>
+
+        <!-- Secondary CTAs -->
+        <div class="btn-row">
+          <!-- Support email (replace SUPPORT_EMAIL if you have one) -->
+          <a class="btn-secondary" 
+             href="mailto:iambpev@gmail.com?subject=ImmoTender%20Support&body=Hi%20ImmoTender%20team%2C%0A%0AI%27m%20writing%20about%20...%0A%0AThanks!">
+            <!-- Envelope icon -->
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+            Support
+          </a>
+
+          <!-- LinkedIn (replace LINKEDIN_URL) -->
+          <a class="btn-secondary" href="https://www.linkedin.com/in/danila-ferents-73b592165/" target="_blank" rel="noopener">
+            <!-- LinkedIn icon -->
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.67V24h-5v-6.9c0-1.64-.03-3.74-2.28-3.74-2.28 0-2.63 1.78-2.63 3.62V24h-5V8z"/>
+            </svg>
+            LinkedIn
+          </a>
+        </div>
       </div>
 
       <footer>
-        <span class="domain-pill"><span class="dot" aria-hidden="true"></span> <span id="domainLabel">yourdomain.com</span></span>
+        <span class="domain-pill"><span class="dot" aria-hidden="true"></span> <span id="domainLabel">immotender.danilaferents.com</span></span>
       </footer>
     </section>
   </div>
@@ -128,33 +170,27 @@
   <script>
     // ---- CONFIGURE THESE VALUES ----
     const CONFIG = {
-      universalLink: 'UNIVERSAL_LINK',   // e.g. https://yourdomain.com/open
-      customScheme: 'yourapp://open',    // fallback to app scheme
+      universalLink: 'UNIVERSAL_LINK',   // e.g. https://immotender.danilaferents.com/open
+      customScheme: 'immotender://open', // fallback to app scheme (change to yours)
       appStoreURL: 'https://apps.apple.com/app/idAPP_STORE_ID',
-      webURL: 'WEB_URL',                 // e.g. https://yourdomain.com
-      domainLabel: 'yourdomain.com'
+      domainLabel: 'immotender.danilaferents.com'
     };
 
-    // Set dynamic hrefs/labels from CONFIG
-    document.getElementById('openWeb').href = CONFIG.webURL;
-    document.getElementById('domainLabel').textContent = CONFIG.domainLabel;
+    // Set dynamic label
+    const domainEl = document.getElementById('domainLabel');
+    if (domainEl) domainEl.textContent = CONFIG.domainLabel;
 
     // Try to open the app; if it fails, fall back to App Store
     function openAppSmart() {
       const start = Date.now();
-
-      // Prefer universal links on iOS (will open app if associated domain is set up)
       const target = CONFIG.universalLink && CONFIG.universalLink !== 'UNIVERSAL_LINK'
         ? CONFIG.universalLink
         : CONFIG.customScheme;
 
-      // In Safari iOS, navigating will switch to app if installed
       window.location.href = target;
 
-      // After a short delay, if the app didn't open, redirect to App Store
       setTimeout(() => {
         const elapsed = Date.now() - start;
-        // If still on page after ~1s, assume no app -> App Store
         if (elapsed < 1500) {
           window.location.href = CONFIG.appStoreURL;
         }
@@ -166,11 +202,9 @@
       openAppSmart();
     });
 
-    // Optional: show platform-specific copy
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     if (/android/i.test(ua)) {
       document.getElementById('openAppBtn').textContent = 'Open in App';
-      // If you also have a Play Store page, change CONFIG.appStoreURL accordingly.
     }
   </script>
 </body>

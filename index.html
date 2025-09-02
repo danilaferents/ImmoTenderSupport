@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>APP_NAME – Mobile Landing</title>
+  <meta name="description" content="Discover amazing experiences in our mobile app." />
+
+  <!-- iOS Smart App Banner (replace APP_STORE_ID) -->
+  <!-- This shows a native banner in Safari on iOS linking to your App Store page -->
+  <meta name="apple-itunes-app" content="app-id=APP_STORE_ID"> 
+
+  <!-- Open Graph (for social shares) -->
+  <meta property="og:title" content="APP_NAME for iOS" />
+  <meta property="og:description" content="Explore APP_NAME on mobile." />
+  <meta property="og:image" content="/path/to/app-icon.png" />
+
+  <style>
+    :root {
+      --bg: #0b0b0f; /* near-black */
+      --card: #121319; /* dark card */
+      --text: #f2f4f8; /* near white */
+      --muted: #b7c0cc;
+      --primary: #2563eb; /* blue */
+      --primary-contrast: #ffffff;
+      --radius: 24px;
+      --shadow: 0 20px 60px rgba(0,0,0,0.45);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; background: radial-gradient(1200px 800px at 70% -10%, #1a1b24, #0b0b0f), var(--bg);
+      color: var(--text); font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      display: grid; place-items: center; 
+    }
+
+    .wrap { width: 100%; max-width: 720px; padding: 24px; }
+
+    .store-header { display: flex; align-items: center; gap: 12px; opacity: .95; margin-bottom: 12px; }
+    .store-header small { color: var(--muted); }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0)), var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden; position: relative;
+    }
+
+    .hero { position: relative; padding: 28px 28px 18px; }
+    .hero-bg {
+      position: absolute; inset: 0; opacity: .18; background:
+        radial-gradient(1000px 500px at 80% 20%, #3b82f6, transparent 60%),
+        radial-gradient(900px 500px at 10% 90%, #8b5cf6, transparent 60%);
+      pointer-events: none; filter: blur(40px);
+    }
+
+    .brand-row { display: flex; align-items: center; gap: 16px; }
+    .icon {
+      width: 88px; height: 88px; border-radius: 24px; flex: 0 0 auto;
+      background: #111; display: grid; place-items: center; overflow: hidden; border: 1px solid rgba(255,255,255,.06);
+    }
+    .icon img { width: 100%; height: 100%; object-fit: cover; }
+
+    h1 { font-size: clamp(28px, 4vw, 40px); margin: 0; letter-spacing: .2px; }
+    .subtitle { color: var(--muted); margin: 8px 0 0 0; font-size: 18px; }
+
+    .cta { padding: 28px; display: grid; gap: 14px; }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center; gap: 10px;
+      width: 100%; padding: 14px 18px; border-radius: 16px; border: 1px solid rgba(255,255,255,.08);
+      background: var(--primary); color: var(--primary-contrast); font-weight: 700; text-decoration: none;
+      box-shadow: 0 8px 24px rgba(37,99,235,.4);
+      transition: transform .08s ease, filter .2s ease, box-shadow .2s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+
+    .link { text-align: center; }
+    .link a { color: #cbd5ff; text-decoration: underline; text-underline-offset: 3px; }
+
+    footer { text-align: center; color: var(--muted); font-size: 14px; padding: 18px 0 4px; }
+
+    .domain-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 12px #10b981; }
+
+    @media (prefers-color-scheme: light) {
+      :root { --bg: #f6f7fb; --card: #ffffff; --text: #111827; --muted: #6b7280; }
+      body { background: radial-gradient(1200px 800px at 70% -10%, #dbeafe, #f6f7fb); }
+      .btn { box-shadow: 0 8px 24px rgba(37,99,235,.25); }
+      .icon { border-color: rgba(0,0,0,.06); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Faux App Store top area -->
+    <div class="store-header">
+      <small>◀ App Store</small>
+    </div>
+
+    <section class="card" role="region" aria-label="App Landing">
+      <div class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+
+        <div class="brand-row">
+          <div class="icon" aria-hidden="true">
+            <!-- Replace with your 1024×1024 icon -->
+            <img src="/path/to/app-icon.png" alt="APP_NAME icon" />
+          </div>
+          <div>
+            <h1>APP_NAME</h1>
+            <p class="subtitle">Discover millions of experiences on mobile.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a id="openAppBtn" class="btn" href="#">Continue in App</a>
+        <p class="link"><a id="openWeb" href="WEB_URL" rel="noopener">Continue in Browser</a></p>
+      </div>
+
+      <footer>
+        <span class="domain-pill"><span class="dot" aria-hidden="true"></span> <span id="domainLabel">yourdomain.com</span></span>
+      </footer>
+    </section>
+  </div>
+
+  <script>
+    // ---- CONFIGURE THESE VALUES ----
+    const CONFIG = {
+      universalLink: 'UNIVERSAL_LINK',   // e.g. https://yourdomain.com/open
+      customScheme: 'yourapp://open',    // fallback to app scheme
+      appStoreURL: 'https://apps.apple.com/app/idAPP_STORE_ID',
+      webURL: 'WEB_URL',                 // e.g. https://yourdomain.com
+      domainLabel: 'yourdomain.com'
+    };
+
+    // Set dynamic hrefs/labels from CONFIG
+    document.getElementById('openWeb').href = CONFIG.webURL;
+    document.getElementById('domainLabel').textContent = CONFIG.domainLabel;
+
+    // Try to open the app; if it fails, fall back to App Store
+    function openAppSmart() {
+      const start = Date.now();
+
+      // Prefer universal links on iOS (will open app if associated domain is set up)
+      const target = CONFIG.universalLink && CONFIG.universalLink !== 'UNIVERSAL_LINK'
+        ? CONFIG.universalLink
+        : CONFIG.customScheme;
+
+      // In Safari iOS, navigating will switch to app if installed
+      window.location.href = target;
+
+      // After a short delay, if the app didn't open, redirect to App Store
+      setTimeout(() => {
+        const elapsed = Date.now() - start;
+        // If still on page after ~1s, assume no app -> App Store
+        if (elapsed < 1500) {
+          window.location.href = CONFIG.appStoreURL;
+        }
+      }, 1000);
+    }
+
+    document.getElementById('openAppBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      openAppSmart();
+    });
+
+    // Optional: show platform-specific copy
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    if (/android/i.test(ua)) {
+      document.getElementById('openAppBtn').textContent = 'Open in App';
+      // If you also have a Play Store page, change CONFIG.appStoreURL accordingly.
+    }
+  </script>
+</body>
+</html>
